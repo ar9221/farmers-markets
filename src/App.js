@@ -1,13 +1,21 @@
 import './App.css';
 import Results from './Results';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
 
   const [searchVal, setSearchVal] = useState("");
   const [zipcode, setZipcode] = useState(0);
   const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    document.getElementById("search-query").addEventListener("keypress", function(evt) {
+      if (evt.key === 'Enter') {
+          document.getElementById("search-query-submit").click();
+      }
+    });
+  }, []);
 
   function onSubmit(evt) {
     evt.preventDefault();
@@ -41,7 +49,7 @@ function App() {
       </div>
       <div className="search-bar flex mt-16 justify-center">
         <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="search-query" id="search-query" onChange={onChange} value={searchVal} placeholder="Enter zip code" />
-        <button type="submit" className="bg-main-color hover:bg-secondary-color text-white font-bold py-2 ml-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={onSubmit}>Submit</button>
+        <button type="submit" className="bg-main-color hover:bg-secondary-color text-white font-bold py-2 ml-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={onSubmit} id="search-query-submit">Submit</button>
       </div>
       {zipcode ? <Results zipcode={zipcode} /> : <div></div>}
     </div>
