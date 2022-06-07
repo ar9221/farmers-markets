@@ -47,15 +47,15 @@ function Results(props) {
     <div className="search-results">
       <ul className="flex flex-col justify-center items-center">
         {markets.map(item => 
-          <li key={item.id} className="mt-4 w-full">
+          <li key={item.id} className="mt-4 w-full flex justify-center">
             <div className="max-w-sm w-full lg:max-w-full">
-              <div className="border-r border-b border-l border-gray-400 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+              <div className="border-t border-r border-b border-l border-gray-400 bg-white rounded p-4 flex flex-col justify-between leading-normal mr-3 ml-3">
                 <div className="mb-8">
                   <p className="text-sm text-gray-600 flex items-center">
                     {item.marketname.substring(0, item.marketname.indexOf(" "))} miles away
                   </p>
-                  <div className="flex justify-between items-center">
-                    <div className="text-gray-900 font-bold text-xl mb-2 text-left">{item.marketname.substring(item.marketname.indexOf(" "))}</div>
+                  <div className="flex justify-between items-center flex-col sm:flex-row">
+                    <div className="text-gray-900 font-bold text-xl mb-2 sm:text-left text-center mr-2">{item.marketname.substring(item.marketname.indexOf(" "))}</div>
                     <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" data-marketid={item.id} onClick={onToggleDetails}>{marketData.hasOwnProperty("" + item.id) && marketData["" + item.id]["show"] ? "Hide Details" : "View Details"}</button>
                   </div>
                   {marketData.hasOwnProperty("" + item.id) && marketData["" + item.id]["show"] ? 
